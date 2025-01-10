@@ -15,18 +15,36 @@ class PersonalityCreationScreen extends StatefulWidget {
 class _PersonalityCreationScreenState extends State<PersonalityCreationScreen> {
   @override
   Widget build(BuildContext context) {
+    String name = 'new personality';
+    String animationData = '';
     return BlocProvider(
-        create: (context) => CanvasCubit(),
-        child: Scaffold(
-            appBar: AppBar(
-              title: Text('New personality'),
-            ),
-            body: BlocBuilder<CanvasCubit, CanvasState>(
-              builder: (context, state) {
-                return ListView(
-                  children: [PixelCanvas()],
-                );
-              },
-            )));
+      create: (context) => CanvasCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('New personality'),
+        ),
+        body: BlocBuilder<CanvasCubit, CanvasState>(
+          builder: (context, state) {
+            return ListView(
+              children: [
+                TextField(
+                  controller: TextEditingController(text: 'new personality'),
+                  onChanged: (value) {
+                    name = value == '' ? 'new personality' : value;
+                  },
+                ),
+                PixelCanvas(),
+              ],
+            );
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context)
+                .pop({'name': name, 'animationData': animationData});
+          },
+        ),
+      ),
+    );
   }
 }

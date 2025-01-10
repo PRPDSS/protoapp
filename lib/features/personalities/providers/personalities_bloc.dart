@@ -24,9 +24,18 @@ class PersonalitiesBloc extends Bloc<PersonalitiesEvent, PersonalitiesState> {
     }
   }
 
-  FutureOr<void> _onAddPersonality(event, emit) {}
+  FutureOr<void> _onAddPersonality(event, emit) async {
+    repository.addPersonality(event.name, event.animationData);
+    emit(PersonalitiesLoaded(await repository.getPersonalities()));
+  }
 
-  FutureOr<void> _onEditPersonality(event, emit) {}
+  FutureOr<void> _onEditPersonality(event, emit) async {
+    repository.updatePersonality(event.id, event.name, event.animationData);
+    emit(PersonalitiesLoaded(await repository.getPersonalities()));
+  }
 
-  FutureOr<void> _onDeletelPersonality(event, emit) {}
+  FutureOr<void> _onDeletelPersonality(event, emit) async {
+    repository.deletePersonality(event.id);
+    emit(PersonalitiesLoaded(await repository.getPersonalities()));
+  }
 }

@@ -44,18 +44,31 @@ class PersonalitiesScreen extends StatelessWidget {
                   if (state is PersonalitiesLoaded) {
                     return ListView.builder(
                       itemCount: state.personalities.length,
-                      itemBuilder: (context, index) => PersonalityCard(),
+                      itemBuilder: (context, index) =>
+                          PersonalityCard(state.personalities[index]),
                     );
                   } else {
                     return Placeholder();
                   }
                 },
               ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () =>
-                    Navigator.restorablePushNamed(context, '/creator'),
-                child: const Icon(Icons.create),
-              ),
+              floatingActionButton: Builder(builder: (context) {
+                final bloc = BlocProvider.of<PersonalitiesBloc>(context);
+                return FloatingActionButton(
+                  onPressed: () async {
+                    final data = await Navigator.pushNamed(context, '/creator');
+                    if (data is Map) {
+                      bloc.add(
+                        AddPersonality(
+                          data['name'] ?? 'noName',
+                          data['animationData'] ?? '',
+                        ),
+                      );
+                    }
+                  },
+                  child: const Icon(Icons.create),
+                );
+              }),
             ),
           ),
         );
