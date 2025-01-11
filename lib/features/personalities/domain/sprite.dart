@@ -44,9 +44,9 @@ class Sprite {
     }
   }
 
-  void resize(){
+  void resize() {}
 
-  }
-  
   int get frameCount => _frameCount;
+
+  List<List<Color>> get bitMap => _bitmap;
 }

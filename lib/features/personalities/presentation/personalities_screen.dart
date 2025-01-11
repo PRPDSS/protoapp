@@ -52,23 +52,26 @@ class PersonalitiesScreen extends StatelessWidget {
                   }
                 },
               ),
-              floatingActionButton: Builder(builder: (context) {
-                final bloc = BlocProvider.of<PersonalitiesBloc>(context);
-                return FloatingActionButton(
-                  onPressed: () async {
-                    final data = await Navigator.pushNamed(context, '/creator');
-                    if (data is Map) {
-                      bloc.add(
-                        AddPersonality(
-                          data['name'] ?? 'noName',
-                          data['animationData'] ?? '',
-                        ),
-                      );
-                    }
-                  },
-                  child: const Icon(Icons.create),
-                );
-              }),
+              floatingActionButton: Builder(
+                builder: (context) {
+                  final bloc = BlocProvider.of<PersonalitiesBloc>(context);
+                  return FloatingActionButton(
+                    onPressed: () async {
+                      final data =
+                          await Navigator.pushNamed(context, '/creator');
+                      if (data is Map) {
+                        bloc.add(
+                          AddPersonality(
+                            data['name'] ?? 'noName',
+                            data['animationData'] ?? '',
+                          ),
+                        );
+                      }
+                    },
+                    child: const Icon(Icons.add),
+                  );
+                },
+              ),
             ),
           ),
         );

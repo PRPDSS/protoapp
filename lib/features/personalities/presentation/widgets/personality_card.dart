@@ -43,6 +43,7 @@ class PersonalityCard extends StatelessWidget {
             ),
             OverflowBar(
               alignment: MainAxisAlignment.end,
+              spacing: 6,
               children: [
                 TextButton(
                   onPressed: () =>
