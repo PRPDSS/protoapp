@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:protoapp/features/personalities/presentation/widgets/color_selector.dart';
 import 'package:protoapp/features/personalities/presentation/widgets/frame_selector.dart';
-import 'package:protoapp/features/personalities/presentation/widgets/layer_selector.dart';
-import 'package:protoapp/features/personalities/presentation/widgets/pixel_canvas.dart';
+import 'package:protoapp/features/personalities/presentation/widgets/sprite_selector.dart';
+import 'package:protoapp/features/personalities/presentation/widgets/pixel_art_canvas.dart';
 import 'package:protoapp/features/personalities/providers/canvas_cubit.dart';
 
 class PersonalityCreationScreen extends StatefulWidget {
@@ -15,35 +16,31 @@ class PersonalityCreationScreen extends StatefulWidget {
 
 class _PersonalityCreationScreenState extends State<PersonalityCreationScreen> {
   @override
+  @override
   Widget build(BuildContext context) {
-    String name = 'New personality';
-    String animationData = '';
     return BlocProvider(
-      create: (context) => CanvasCubit(),
+      create: (_) => CanvasCubit(),
       child: Scaffold(
         appBar: AppBar(
-          title: TextField(
-            controller: TextEditingController(text: name),
-            onChanged: (value) {
-              name = value == '' ? name : value;
-            },
-          ),
+          title: const Text('Pixel Art Editor'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Expanded(child: PixelCanvas()),
-            Row(
-              children: [FrameSelector(), LayerSelector()],
+            Expanded(
+              child: PixelArtCanvas(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SpriteSelector(),
+                  FrameSelector(),
+                  ColorSelector(),
+                ],
+              ),
             ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.save_outlined),
-          onPressed: () {
-            Navigator.of(context)
-                .pop({'name': name, 'animationData': animationData});
-          },
         ),
       ),
     );

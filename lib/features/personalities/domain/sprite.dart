@@ -11,42 +11,26 @@ class Sprite {
   final int width;
 
   /// Количество кадрав спрайта
-  int _frameCount;
+  final int frameCount;
 
   /// Битмап (массив кадров (кадры - одномерный массив (я конч)))
-  List<List<Color>> _bitmap;
-
-  /// Пустой кадр, используется при увеличении числа кадров
-  final List<Color> _emptyFrame;
+  final List<Color> bitmap;
 
   Sprite({
     required this.name,
     required this.height,
     required this.width,
-    required frameCount,
-  })  : _frameCount = frameCount,
-        _bitmap = List.generate(frameCount,
-            (_) => List.generate(height * width, (_) => Colors.transparent)),
-        _emptyFrame = List.generate(height * width, (_) => Colors.transparent);
+    required this.frameCount,
+    required this.bitmap,
+  });
 
-  /// Удалить лишние кадры из памяти
-  void cutExcessiveFrames() {
-    if (_bitmap.length > _frameCount) {
-      _bitmap = _bitmap.sublist(0, _frameCount);
-    }
+  Map<String, dynamic> toJsonMap() {
+    return {
+      'name': name,
+      'height': height,
+      'width': width,
+      'frameCount': frameCount,
+      'bitmap': bitmap, 
+    };
   }
-
-  set frameCount(int frameCount) {
-    _frameCount = frameCount;
-    if (_bitmap.length < _frameCount) {
-      _bitmap +=
-          List.generate(_frameCount - _bitmap.length, (_) => _emptyFrame);
-    }
-  }
-
-  void resize() {}
-
-  int get frameCount => _frameCount;
-
-  List<List<Color>> get bitMap => _bitmap;
 }

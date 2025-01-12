@@ -1,9 +1,8 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:protoapp/features/personalities/domain/sprite.dart';
 
 class CanvasState {
-  final int activeLayer;
+  final int activeSprite;
   final int activeFrame;
   final Color selectedColor;
   final int height;
@@ -11,7 +10,7 @@ class CanvasState {
   List<Sprite> scene;
 
   CanvasState({
-    required this.activeLayer,
+    required this.activeSprite,
     required this.activeFrame,
     required this.selectedColor,
     required this.height,
@@ -19,14 +18,15 @@ class CanvasState {
   }) : scene = [
           Sprite(
             name: '',
-            height: 8,
-            width: 8,
+            height: height,
+            width: width,
             frameCount: 1,
-          )
+            bitmap: List.filled(width * height, Colors.transparent),
+          ),
         ];
 
   CanvasState copyWith({
-    int? activeLayer,
+    int? activeSprite,
     int? activeFrame,
     Color? selectedColor,
     int? height,
@@ -34,7 +34,7 @@ class CanvasState {
     List<Sprite>? scene,
   }) {
     return CanvasState(
-      activeLayer: activeLayer ?? this.activeLayer,
+      activeSprite: activeSprite ?? this.activeSprite,
       activeFrame: activeFrame ?? this.activeFrame,
       selectedColor: selectedColor ?? this.selectedColor,
       height: height ?? this.height,

@@ -7,4 +7,8 @@ class Scene {
   factory Scene.empty() {
     return Scene(List<SpriteInstance>.empty());
   }
+
+  List<dynamic> toList() {
+    return List.from(spriteInstances.map((e) => e.toJsonMap()));
+  }
 }
