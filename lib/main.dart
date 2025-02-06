@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:protoapp/features/personalities/presentation/personalities_screen.dart';
-import 'package:protoapp/features/personalities/presentation/personality_creation_screen.dart';
+import 'package:protoapp/presentation/screens/editor_screen.dart';
+import 'package:protoapp/presentation/screens/personalities_screen.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const PersonalitiesScreen(),
-        '/creator': (context) => const PersonalityCreationScreen(),
+        '/editor': (context) => const EditorScreen(),
       },
     );
   }

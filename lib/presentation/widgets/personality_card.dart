@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:protoapp/features/personalities/domain/personality.dart';
-import 'package:protoapp/features/personalities/providers/personalities_bloc.dart';
-import 'package:protoapp/features/personalities/providers/personalities_event.dart';
+import 'package:protoapp/domain/models/personality.dart';
+import 'package:protoapp/providers/personalities_bloc.dart';
+import 'package:protoapp/providers/personalities_event.dart';
 
 class PersonalityCard extends StatelessWidget {
   final Personality personality;

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:protoapp/features/personalities/data/personalities_repository.dart';
-import 'package:protoapp/features/personalities/providers/personalities_event.dart';
-import 'package:protoapp/features/personalities/providers/personalities_state.dart';
+import 'package:protoapp/data/personalities_repository.dart';
+import 'package:protoapp/providers/personalities_event.dart';
+import 'package:protoapp/providers/personalities_state.dart';
 
 class PersonalitiesBloc extends Bloc<PersonalitiesEvent, PersonalitiesState> {
   final PersonalitiesRepository repository;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:protoapp/database/database_service.dart';
-import 'package:protoapp/features/personalities/data/personalities_repository.dart';
-import 'package:protoapp/features/personalities/presentation/widgets/personality_card.dart';
-import 'package:protoapp/features/personalities/providers/personalities_bloc.dart';
-import 'package:protoapp/features/personalities/providers/personalities_event.dart';
-import 'package:protoapp/features/personalities/providers/personalities_state.dart';
+import 'package:protoapp/data/database/database_service.dart';
+import 'package:protoapp/data/personalities_repository.dart';
+import 'package:protoapp/presentation/widgets/personality_card.dart';
+import 'package:protoapp/providers/personalities_bloc.dart';
+import 'package:protoapp/providers/personalities_event.dart';
+import 'package:protoapp/providers/personalities_state.dart';
 
 class PersonalitiesScreen extends StatelessWidget {
   const PersonalitiesScreen({super.key});
@@ -58,7 +58,7 @@ class PersonalitiesScreen extends StatelessWidget {
                   return FloatingActionButton(
                     onPressed: () async {
                       final data =
-                          await Navigator.pushNamed(context, '/creator');
+                          await Navigator.pushNamed(context, '/editor');
                       if (data is Map) {
                         bloc.add(
                           AddPersonality(

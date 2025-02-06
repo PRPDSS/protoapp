@@ -1,4 +1,4 @@
-import 'package:protoapp/features/personalities/domain/personality.dart';
+import 'package:protoapp/domain/models/personality.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class PersonalitiesRepository {

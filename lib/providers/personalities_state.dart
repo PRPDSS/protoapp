@@ -1,4 +1,4 @@
-import 'package:protoapp/features/personalities/domain/personality.dart';
+import 'package:protoapp/domain/models/personality.dart';
 
 abstract class PersonalitiesState {}
 
