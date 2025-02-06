@@ -10,7 +10,8 @@ class Layer {
     required this.height,
     List<List<Color>>? pixels,
   }) : pixels = pixels ??
-            List.filled(height, List.filled(width, Colors.transparent));
+            List.generate(
+                height, (_) => List.filled(width, Colors.transparent));
 
   /// Копирует слой с новыми параметрами
   Layer copyWith({

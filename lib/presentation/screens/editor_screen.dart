@@ -17,7 +17,7 @@ class _EditorScreenState extends State<EditorScreen> {
   @override
   void initState() {
     super.initState();
-    scene = PixelScene(width: 4, height: 4);
+    scene = PixelScene(width: 32, height: 16);
     selectedColor = Colors.black;
   }
 
@@ -30,10 +30,22 @@ class _EditorScreenState extends State<EditorScreen> {
       body: Column(
         children: [
           Toolbar(
-              //   onColorSelected: (color) {
-              //     // Обработка выбора цвета
-              //   },
-              ),
+            selectedColor: selectedColor,
+            onColorSelected: (color) {
+              setState(
+                () {
+                  selectedColor = color;
+                },
+              );
+            },
+            onEraserSelected: () {
+              setState(
+                () {
+                  selectedColor = Colors.transparent;
+                },
+              );
+            },
+          ),
           Expanded(
             child: PixelGrid(
               scene: scene,

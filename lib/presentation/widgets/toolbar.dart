@@ -1,17 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class Toolbar extends StatelessWidget {
-  const Toolbar({super.key});
+  final Function(Color color) onColorSelected;
+  final Function() onEraserSelected;
+  final Color selectedColor;
+
+  const Toolbar({
+    required this.onColorSelected,
+    required this.onEraserSelected,
+    required this.selectedColor,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [Text('TOOLBAR')],
+      children: [
+        Text('TOOLBAR'),
+        _toolBarItem(Icon(Icons.draw), () {}),
+        _toolBarItem(
+          Icon(Icons.palette),
+          () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('Pick a color!'),
+                  content: Expanded(
+                    child: Column(
+                      children: [
+                        ColorPicker(
+                          pickerColor: selectedColor,
+                          onColorChanged: onColorSelected,
+                          enableAlpha: true,
+                          portraitOnly: true,
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
+        _toolBarItem(
+          Icon(Icons.radio_button_unchecked_rounded),
+          () {
+            onEraserSelected();
+          },
+        ),
+      ],
     );
   }
 }
 
 Widget _toolBarItem(Icon icon, VoidCallback onTap) {
-  return Placeholder();
+  return IconButton(onPressed: onTap, icon: icon);
 }
