@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:protoapp/domain/models/pixel_scene.dart';
 import 'package:protoapp/presentation/widgets/pixel_grid.dart';
+import 'package:protoapp/presentation/widgets/timeline.dart';
 import 'package:protoapp/presentation/widgets/toolbar.dart';
 
 class EditorScreen extends StatefulWidget {
@@ -61,17 +62,17 @@ class _EditorScreenState extends State<EditorScreen> {
               },
             ),
           ),
-          Text('TimeLine')
-          // Timeline(
-          //   frames: scene.frames,
-          //   onFrameSelected: (index) {
-          //     setState(
-          //       () {
-          //         scene = scene.copyWith(currentFrameIndex: index);
-          //       },
-          //     );
-          //   },
-          // ),
+        Timeline(
+            frames: scene.frames,
+            currentFrameIndex: scene.currentFrameIndex,
+            onFrameSelected: (index) {
+              setState(
+                () {
+                  scene = scene.copyWith(currentFrameIndex: index);
+                },
+              );
+            },
+          ),
         ],
       ),
     );

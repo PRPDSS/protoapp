@@ -21,6 +21,12 @@ class Toolbar extends StatelessWidget {
         Text('TOOLBAR'),
         _toolBarItem(Icon(Icons.draw), () {}),
         _toolBarItem(
+          Icon(Icons.radio_button_unchecked_rounded),
+          () {
+            onEraserSelected();
+          },
+        ),
+        _toolBarItem(
           Icon(Icons.palette),
           () {
             showDialog(
@@ -43,12 +49,6 @@ class Toolbar extends StatelessWidget {
                 );
               },
             );
-          },
-        ),
-        _toolBarItem(
-          Icon(Icons.radio_button_unchecked_rounded),
-          () {
-            onEraserSelected();
           },
         ),
       ],
